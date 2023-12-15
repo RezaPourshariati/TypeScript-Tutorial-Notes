@@ -96,6 +96,7 @@ echo2({ name: "reza" });
 interface Person {
     name: string;
 }
+
 function echo3<T extends Person>(value: T): T { // generic from interface.
     return value;
 }
@@ -114,7 +115,7 @@ function echo4<T extends Person1>(value: T): T { // generic from a class (we can
     return value;
 }
 
-echo4(new Customer1("a"));
+const customerPerson = echo4(new Customer1("a"));
 
 
 // --------------------------------------- 7. Extending Generic Classes and Inheritance
@@ -136,7 +137,7 @@ let store = new Store<Product1>();
 // store.objects = [];
 
 
-// -------- Pass on the generic type parameter
+// -------------- Pass on the generic type parameter
 class CompressibleStore<T> extends Store<T> {
     compress(obj: T): T { 
         return obj;
@@ -147,14 +148,17 @@ let store1 = new CompressibleStore<Product1>();
 store1.compress({name: "reza", price: 12});
 
 
-// -------- Restrict thee generic type paramter
+// -------------- Restrict the generic type paramter
 class SearchableStore<T extends { name: string }> extends Store<T> {
     find(name: string): T | undefined {
         return this._objects.find(obj => obj.name === name);
     }
 }
 
-// -------- Fix or terminating the generic type parameter
+let store2 = new SearchableStore<Product1>();
+const searchable = store2.find("reza");
+
+// -------------- Fix or terminating the generic type parameter
 class ProductStore extends Store<Product1> {
     filterByCategory(category: string): Product1[] {
         return [];
