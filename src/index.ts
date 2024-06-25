@@ -177,8 +177,9 @@ log?.("a");
 
 let speed: number | null = null;
 let ride = {
-    // Falsy (undefined, null, "", false, 0)
+    // Falsy values in javascript (undefined, null, "", false, 0)
     // Nullish Coalescing Operator
+
     // speed: speed || 30
     speed: speed ?? 30 // if speed is not 'null' or 'undefined' use that value, otherwise 30 as default value.
 }
