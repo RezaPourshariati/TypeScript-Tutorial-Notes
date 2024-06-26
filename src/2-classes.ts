@@ -183,6 +183,7 @@ class Person {
 
 class Student extends Person {
     constructor(public id: number, firstName: string, lastName: string) {
+        // for firstName and lastName we don't need to use 'public' modifier.
         super(firstName, lastName);
     }
 
